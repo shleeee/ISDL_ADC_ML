@@ -49,7 +49,7 @@ ML_EQ, loss_q = model.quantization_train(X_train, Y_train, ML_EQ, lr_q, epochs_q
 
 print('Quantization Accuracy: ' + str(model.test(X_train, y_train, ML_EQ)*100))
 
-io.write_weight(ML_EQ, "./ML_EQ_Quantized_weight")
+io.write_weight(ML_EQ, "./result/ML_EQ_Quantized_weight")
 
 '''
 plt.subplot(1,2,1)
