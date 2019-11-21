@@ -1,0 +1,300 @@
+#!/usr/bin/env python
+import numpy as np
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import pylab
+import math
+
+fcoeff = file(  './file_for_coeff.txt', 'r')
+dlev_t=[]
+dlev_a=[]
+elev_t=[]
+elev_a=[]
+ddfe_t=[]
+ddfe_a=[]
+for i in range(12) :
+	ddfe_t.append([])
+	ddfe_a.append([])
+edfe_t=[]
+edfe_a=[]
+for i in range(12) :
+	edfe_t.append([])
+	edfe_a.append([])
+
+#for i in range(3) :
+#	dlev_t[i].append(0.0)
+#	dlev_a[i].append(0.0)
+#
+#for i in range(27) :
+#	ddfe_t[i].append(0.0)
+#	ddfe_a[i].append(0.0)
+#	edfe_t[i].append(0.0)
+#	edfe_a[i].append(0.0)
+initial=1
+initial_time=0
+for line in fcoeff :
+	d=line.split()
+	d[2]=1000*float(d[2])
+	if(initial==1) :
+		initial_time = float(d[1])
+		initial=0
+		for i in range(12) :
+			ddfe_t[i].append(initial_time)
+			ddfe_a[i].append(0)
+			edfe_t[i].append(initial_time)
+			edfe_a[i].append(0)
+		dlev_t.append(initial_time)
+		elev_t.append(initial_time)
+	if(d[0]=='dlev') :
+		if(len(dlev_t)==1) :
+			dlev_a.append(float(d[2]))
+		dlev_t.append(float(d[1]))
+		dlev_a.append(dlev_a[len(dlev_a)-1])
+		dlev_t.append(float(d[1]))
+		dlev_a.append(float(d[2]))
+	if(d[0]=='elev') :
+		if(len(elev_t)==1) :
+			elev_a.append(float(d[2]))
+		elev_t.append(float(d[1]))
+		elev_a.append(elev_a[len(elev_a)-1])
+		elev_t.append(float(d[1]))
+		elev_a.append(float(d[2]))
+	elif(d[0]=='dbig1'):
+		ddfe_t[0].append(float(d[1]))
+		ddfe_a[0].append(ddfe_a[0][len(ddfe_a[0])-1])
+		ddfe_t[0].append(float(d[1]))
+		ddfe_a[0].append(float(d[2]))
+	elif(d[0]=='dbig2'):
+		ddfe_t[1].append(float(d[1]))
+		ddfe_a[1].append(ddfe_a[1][len(ddfe_a[1])-1])
+		ddfe_t[1].append(float(d[1]))
+		ddfe_a[1].append(float(d[2]))
+	elif(d[0]=='dbig3'):
+		ddfe_t[2].append(float(d[1]))
+		ddfe_a[2].append(ddfe_a[2][len(ddfe_a[2])-1])
+		ddfe_t[2].append(float(d[1]))
+		ddfe_a[2].append(float(d[2]))
+	elif(d[0]=='dbig4'):
+		ddfe_t[3].append(float(d[1]))
+		ddfe_a[3].append(ddfe_a[3][len(ddfe_a[3])-1])
+		ddfe_t[3].append(float(d[1]))
+		ddfe_a[3].append(float(d[2]))
+	elif(d[0]=='dmid1'):
+		ddfe_t[4].append(float(d[1]))
+		ddfe_a[4].append(ddfe_a[4][len(ddfe_a[4])-1])
+		ddfe_t[4].append(float(d[1]))
+		ddfe_a[4].append(float(d[2]))
+	elif(d[0]=='dmid2'):
+		ddfe_t[5].append(float(d[1]))
+		ddfe_a[5].append(ddfe_a[5][len(ddfe_a[5])-1])
+		ddfe_t[5].append(float(d[1]))
+		ddfe_a[5].append(float(d[2]))
+	elif(d[0]=='dmid3'):
+		ddfe_t[6].append(float(d[1]))
+		ddfe_a[6].append(ddfe_a[6][len(ddfe_a[6])-1])
+		ddfe_t[6].append(float(d[1]))
+		ddfe_a[6].append(float(d[2]))
+	elif(d[0]=='dmid4'):
+		ddfe_t[7].append(float(d[1]))
+		ddfe_a[7].append(ddfe_a[7][len(ddfe_a[7])-1])
+		ddfe_t[7].append(float(d[1]))
+		ddfe_a[7].append(float(d[2]))
+	elif(d[0]=='dsml1'):
+		ddfe_t[8].append(float(d[1]))
+		ddfe_a[8].append(ddfe_a[8][len(ddfe_a[8])-1])
+		ddfe_t[8].append(float(d[1]))
+		ddfe_a[8].append(float(d[2]))
+	elif(d[0]=='dsml2'):
+		ddfe_t[9].append(float(d[1]))
+		ddfe_a[9].append(ddfe_a[9][len(ddfe_a[9])-1])
+		ddfe_t[9].append(float(d[1]))
+		ddfe_a[9].append(float(d[2]))
+	elif(d[0]=='dsml3'):
+		ddfe_t[10].append(float(d[1]))
+		ddfe_a[10].append(ddfe_a[10][len(ddfe_a[10])-1])
+		ddfe_t[10].append(float(d[1]))
+		ddfe_a[10].append(float(d[2]))
+	elif(d[0]=='dsml4'):
+		ddfe_t[11].append(float(d[1]))
+		ddfe_a[11].append(ddfe_a[11][len(ddfe_a[11])-1])
+		ddfe_t[11].append(float(d[1]))
+		ddfe_a[11].append(float(d[2]))
+	elif(d[0]=='ebig1'):
+		edfe_t[0].append(float(d[1]))
+		edfe_a[0].append(edfe_a[0][len(edfe_a[0])-1])
+		edfe_t[0].append(float(d[1]))
+		edfe_a[0].append(float(d[2]))
+	elif(d[0]=='ebig2'):
+		edfe_t[1].append(float(d[1]))
+		edfe_a[1].append(edfe_a[1][len(edfe_a[1])-1])
+		edfe_t[1].append(float(d[1]))
+		edfe_a[1].append(float(d[2]))
+	elif(d[0]=='ebig3'):
+		edfe_t[2].append(float(d[1]))
+		edfe_a[2].append(edfe_a[2][len(edfe_a[2])-1])
+		edfe_t[2].append(float(d[1]))
+		edfe_a[2].append(float(d[2]))
+	elif(d[0]=='ebig4'):
+		edfe_t[3].append(float(d[1]))
+		edfe_a[3].append(edfe_a[3][len(edfe_a[3])-1])
+		edfe_t[3].append(float(d[1]))
+		edfe_a[3].append(float(d[2]))
+	elif(d[0]=='ebig1'):
+		edfe_t[4].append(float(d[1]))
+		edfe_a[4].append(edfe_a[4][len(edfe_a[4])-1])
+		edfe_t[4].append(float(d[1]))
+		edfe_a[4].append(float(d[2]))
+	elif(d[0]=='ebig2'):
+		edfe_t[5].append(float(d[1]))
+		edfe_a[5].append(edfe_a[5][len(edfe_a[5])-1])
+		edfe_t[5].append(float(d[1]))
+		edfe_a[5].append(float(d[2]))
+	elif(d[0]=='ebig3'):
+		edfe_t[6].append(float(d[1]))
+		edfe_a[6].append(edfe_a[6][len(edfe_a[6])-1])
+		edfe_t[6].append(float(d[1]))
+		edfe_a[6].append(float(d[2]))
+	elif(d[0]=='ebig4'):
+		edfe_t[7].append(float(d[1]))
+		edfe_a[7].append(edfe_a[7][len(edfe_a[7])-1])
+		edfe_t[7].append(float(d[1]))
+		edfe_a[7].append(float(d[2]))
+	elif(d[0]=='esml1'):
+		edfe_t[8].append(float(d[1]))
+		edfe_a[8].append(edfe_a[8][len(edfe_a[8])-1])
+		edfe_t[8].append(float(d[1]))
+		edfe_a[8].append(float(d[2]))
+	elif(d[0]=='esml2'):
+		edfe_t[9].append(float(d[1]))
+		edfe_a[9].append(edfe_a[9][len(edfe_a[9])-1])
+		edfe_t[9].append(float(d[1]))
+		edfe_a[9].append(float(d[2]))
+	elif(d[0]=='esml3'):
+		edfe_t[10].append(float(d[1]))
+		edfe_a[10].append(edfe_a[10][len(edfe_a[10])-1])
+		edfe_t[10].append(float(d[1]))
+		edfe_a[10].append(float(d[2]))
+	elif(d[0]=='esml4'):
+		edfe_t[11].append(float(d[1]))
+		edfe_a[11].append(edfe_a[11][len(edfe_a[11])-1])
+		edfe_t[11].append(float(d[1]))
+		edfe_a[11].append(float(d[2]))
+
+dlev_t.append(float(d[1])+2000)
+dlev_a.append(dlev_a[len(dlev_a)-1])
+elev_t.append(float(d[1])+2000)
+elev_a.append(elev_a[len(elev_a)-1])
+for i in range(8) :
+	ddfe_t[i].append(float(d[1])+2000)
+	ddfe_a[i].append(ddfe_a[i][len(ddfe_a[i])-1])
+	edfe_t[i].append(float(d[1])+2000)
+	edfe_a[i].append(edfe_a[i][len(edfe_a[i])-1])
+
+
+plt.figure(1)
+plt.plot(dlev_t,dlev_a)
+plt.xlabel('time,ns', fontsize='xx-large')
+plt.ylabel('voltage,mV', fontsize='xx-large')
+plt.grid()
+plt.savefig('coeff_error_sampler.png')
+plt.figure(2)
+plt.plot(elev_t,elev_a)
+plt.xlabel('time,ns', fontsize='xx-large')
+plt.ylabel('voltage,mV', fontsize='xx-large')
+plt.grid()
+plt.savefig('coeff_edge_sampler.png')
+plt.figure(3)
+plt.plot(ddfe_t[0],ddfe_a[0], label='1st-cursor')
+plt.hold(True)
+plt.plot(ddfe_t[1],ddfe_a[1], label='2nd-cursor')
+plt.hold(True)
+plt.plot(ddfe_t[2],ddfe_a[2], label='3rd-cursor')
+plt.hold(True)
+plt.plot(ddfe_t[3],ddfe_a[3], label='4th-cursor')
+plt.ylim(ymax=80)
+plt.legend(loc=2)
+plt.xlabel('time,ns', fontsize='xx-large')
+plt.ylabel('voltage,mV', fontsize='xx-large')
+plt.grid()
+plt.savefig('coeff_data_low.png')
+plt.figure(4)
+plt.plot(ddfe_t[4],ddfe_a[4], label='1st-cursor')
+plt.hold(True)
+plt.plot(ddfe_t[5],ddfe_a[5], label='2nd-cursor')
+plt.hold(True)
+plt.plot(ddfe_t[6],ddfe_a[6], label='3rd-cursor')
+plt.hold(True)
+plt.plot(ddfe_t[7],ddfe_a[7], label='4th-cursor')
+plt.ylim(ymax=80)
+plt.legend(loc=2)
+plt.xlabel('time,ns', fontsize='xx-large')
+plt.ylabel('voltage,mV', fontsize='xx-large')
+plt.grid()
+plt.savefig('coeff_data_mid.png')
+plt.figure(5)
+plt.plot(ddfe_t[8],ddfe_a[8], label='1st-cursor')
+plt.hold(True)
+plt.plot(ddfe_t[9],ddfe_a[9], label='2nd-cursor')
+plt.hold(True)
+plt.plot(ddfe_t[10],ddfe_a[10], label='3rd-cursor')
+plt.hold(True)
+plt.plot(ddfe_t[11],ddfe_a[11], label='4th-cursor')
+plt.ylim(ymax=80)
+plt.legend(loc=2)
+plt.xlabel('time,ns', fontsize='xx-large')
+plt.ylabel('voltage,mV', fontsize='xx-large')
+plt.grid()
+plt.savefig('coeff_data_upper.png')
+plt.figure(6)
+plt.plot(edfe_t[0],edfe_a[0], label='1st-cursor')
+plt.hold(True)
+plt.plot(edfe_t[1],edfe_a[1], label='2nd-cursor')
+plt.hold(True)
+plt.plot(edfe_t[2],edfe_a[2], label='3rd-cursor')
+plt.hold(True)
+plt.plot(edfe_t[3],edfe_a[3], label='4th-cursor')
+plt.ylim(ymax=60)
+plt.legend(loc=2)
+plt.xlabel('time,ns', fontsize='xx-large')
+plt.ylabel('voltage,mV', fontsize='xx-large')
+plt.grid()
+plt.savefig('coeff_edge_low.png')
+plt.figure(7)
+plt.plot(edfe_t[4],edfe_a[4], label='1st-cursor')
+plt.hold(True)
+plt.plot(edfe_t[5],edfe_a[5], label='2nd-cursor')
+plt.hold(True)
+plt.plot(edfe_t[6],edfe_a[6], label='3rd-cursor')
+plt.hold(True)
+plt.plot(edfe_t[7],edfe_a[7], label='4th-cursor')
+plt.ylim(ymax=60)
+plt.legend(loc=2)
+plt.xlabel('time,ns', fontsize='xx-large')
+plt.ylabel('voltage,mV', fontsize='xx-large')
+plt.grid()
+plt.savefig('coeff_edge_mid.png')
+plt.figure(8)
+plt.plot(edfe_t[8],edfe_a[8], label='1st-cursor')
+plt.hold(True)
+plt.plot(edfe_t[9],edfe_a[9], label='2nd-cursor')
+plt.hold(True)
+plt.plot(edfe_t[10],edfe_a[10], label='3rd-cursor')
+plt.hold(True)
+plt.plot(edfe_t[11],edfe_a[11], label='4th-cursor')
+plt.ylim(ymax=60)
+plt.legend(loc=2)
+plt.xlabel('time,ns', fontsize='xx-large')
+plt.ylabel('voltage,mV', fontsize='xx-large')
+plt.grid()
+plt.savefig('coeff_edge_upper.png')
+plt.figure(9)
+plt.plot(dlev_t,dlev_a)
+plt.hold(True)
+plt.plot(elev_t,elev_a)
+plt.xlabel('time,ns', fontsize='xx-large')
+plt.ylabel('voltage,mV', fontsize='xx-large')
+plt.grid()
+plt.savefig('coeff_sampler.png')
+#plt.figure(2)
+#np.histogram2d(time_array, vol_array)
+plt.show()

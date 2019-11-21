@@ -1,0 +1,27 @@
+//
+// File created by:  xmverilog
+// Do not modify this file
+//
+-XLMODE
+./xcelium.d/run.lnx8664.19.03.d
+-RUNMODE
+-YDIR
+./
+-YDIR
+./../channel
+-YDIR
+./../code
+-LIBEXT
+.v
+-LIBEXT
+.sv
+./tb_top.sv
+-CDSLIB
+./xcelium.d/run.lnx8664.19.03.d/cdsrun.lib
+-HDLVAR
+./xcelium.d/run.lnx8664.19.03.d/hdlrun.var
+-MESSAGES
+-UPDATE
+-XLLIBSTORE
+./xcelium.d/run.lnx8664.19.03.d/xllibs
+-ALLOWUNBOUND

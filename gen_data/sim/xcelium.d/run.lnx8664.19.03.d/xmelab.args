@@ -1,0 +1,24 @@
+//
+// File created by:  xmverilog
+// Do not modify this file
+//
++uncdir+./
++uncdir+./../channel
++uncdir+./../code
++xm64bit
++access+r
++libext+.v+.sv+
+-noshowtop
+-ACCESS
++r
+-MESSAGES
+-XLMODE
+./xcelium.d/run.lnx8664.19.03.d
+-RUNMODE
+-CDSLIB
+./xcelium.d/run.lnx8664.19.03.d/cds.lib
+-HDLVAR
+./xcelium.d/run.lnx8664.19.03.d/hdl.var
+-WORK
+worklib
+-HASXLMODE

@@ -1,0 +1,20 @@
+ncverilog(64): 15.20-s010: (c) Copyright 1995-2016 Cadence Design Systems, Inc.
+TOOL:	ncverilog	15.20-s010: Started on Nov 19, 2019 at 20:03:31 EST
+ncverilog
+	+nc64bit
+	+access+r
+	./tb_top.sv
+	/proj/titanic/r1/user/shroh/adc_nn/modeling/code/adc_6b.sv
+	/proj/titanic/r1/user/shroh/adc_nn/modeling/code/prbs_gen_1b.v
+	/proj/titanic/r1/user/shroh/adc_nn/modeling/code/prbs_gen_2b.v
+	/proj/titanic/r1/user/shroh/adc_nn/modeling/channel/channel_10dB.sv
+	/proj/titanic/r1/user/shroh/adc_nn/modeling/channel/channel_17dB.sv
+	/proj/titanic/r1/user/shroh/adc_nn/modeling/channel/channel_23dB.sv
+	/proj/titanic/r1/user/shroh/adc_nn/modeling/channel/channel_27dB.sv
+
+Trying to check out license...
+	Incisive_HDL_Simulator 15.20 - Failed
+	Incisive_Enterprise_Simulator 15.20 - Failed
+	Incisive_Enterprise_Verifier 15.20 - Failed
+ncsim: *F,NOLICN: Unable to checkout license for the simulation. (flag - 2) 'lic_error -18'.
+TOOL:	ncverilog	15.20-s010: Exiting on Nov 19, 2019 at 20:03:31 EST  (total: 00:00:00)

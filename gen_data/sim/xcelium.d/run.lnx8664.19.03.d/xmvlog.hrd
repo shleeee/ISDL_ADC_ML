@@ -1,0 +1,14 @@
+//
+// File created by:  xmverilog
+// Do not modify this file
+//
+-YDIR
+./
+-YDIR
+./../channel
+-YDIR
+./../code
+-LIBEXT
+.v
+-LIBEXT
+.sv
