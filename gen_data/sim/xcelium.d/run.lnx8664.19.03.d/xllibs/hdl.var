@@ -1,0 +1,8 @@
+define LIB_MAP ( $LIB_MAP \
+, ../../../../code => gen_data \
+, ../../../../channel => channel \
+)
+define LIB_MAP ( $LIB_MAP \
+, ../../../../code => gen_data \
+, ../../../../channel => channel \
+)

@@ -1,0 +1,17 @@
+//
+// File created by:  xmverilog
+// Do not modify this file
+//
++xm64bit
++access+r
+-y
+./
+-y
+./../channel
+-y
+./../code
++libext+.v+.sv+
++uncdir+./
++uncdir+./../channel
++uncdir+./../code
+./tb_top.sv
