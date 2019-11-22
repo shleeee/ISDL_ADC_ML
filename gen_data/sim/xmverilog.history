@@ -179,4 +179,9 @@ s178(20Nov2019:23:13:53):  xmverilog +xm64bit +access+r ./tb_top.sv /proj/titani
 s179(21Nov2019:06:02:34):  xmverilog +xm64bit +access+r -y ./ -y ./../channel -y ./../code +libext+.v+.sv+ +uncdir+./ +uncdir+./../channel +uncdir+./../code ./tb_top.sv 
 s180(21Nov2019:06:04:15):  xmverilog +xm64bit +access+r -y ./ -y ./../channel -y ./../code +libext+.v+.sv+ +uncdir+./ +uncdir+./../channel +uncdir+./../code ./tb_top.sv 
 s181(21Nov2019:06:11:46):  xmverilog +xm64bit +access+r -y ./ -y ./../channel -y ./../code +libext+.v+.sv+ +uncdir+./ +uncdir+./../channel +uncdir+./../code ./tb_top.sv 
+<<<<<<< HEAD
 s182(21Nov2019:06:47:47):  xmverilog +xm64bit +access+r -y ./ -y ./../channel -y ./../code +libext+.v+.sv+ +uncdir+./ +uncdir+./../channel +uncdir+./../code ./tb_top.sv 
+=======
+s182(21Nov2019:07:11:00):  xmverilog +xm64bit +access+r -y ./ -y ./../channel -y ./../code +libext+.v+.sv+ +uncdir+./ +uncdir+./../channel +uncdir+./../code ./tb_top.sv 
+s183(21Nov2019:07:17:30):  xmverilog +xm64bit +access+r -y ./ -y ./../channel -y ./../code +libext+.v+.sv+ +uncdir+./ +uncdir+./../channel +uncdir+./../code ./tb_top.sv 
+>>>>>>> shlee95

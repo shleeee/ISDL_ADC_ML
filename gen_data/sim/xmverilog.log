@@ -1,5 +1,9 @@
 xmverilog(64): 19.03-s009: (c) Copyright 1995-2019 Cadence Design Systems, Inc.
+<<<<<<< HEAD
 TOOL:	xmverilog	19.03-s009: Started on Nov 21, 2019 at 06:47:47 EST
+=======
+TOOL:	xmverilog	19.03-s009: Started on Nov 21, 2019 at 07:17:30 EST
+>>>>>>> shlee95
 xmverilog
 	+xm64bit
 	+access+r
@@ -14,6 +18,7 @@ xmverilog
 	+uncdir+./../channel
 	+uncdir+./../code
 	./tb_top.sv
+<<<<<<< HEAD
 file: ./tb_top.sv
 	module worklib.tb_top:sv
 		errors: 0, warnings: 0
@@ -26,6 +31,15 @@ file: ./../code/prbs_gen_1b.v
 file: ./../code/adc_6b.sv
 	module gen_data.adc_6b:sv
 		errors: 0, warnings: 0
+=======
+Recompiling... reason: file './tb_top.sv' is newer than expected.
+	expected: Thu Nov 21 07:10:58 2019
+	actual:   Thu Nov 21 07:17:25 2019
+file: ./tb_top.sv
+	module worklib.tb_top:sv
+		errors: 0, warnings: 0
+file: ./../code/adc_6b.sv
+>>>>>>> shlee95
 xmvlog: *W,LIBNOU: Library "./" given but not used.
 	Total errors/warnings found outside modules and primitives:
 		errors: 0, warnings: 1
@@ -38,12 +52,15 @@ xmelab: *W,DSEMEL: This SystemVerilog design will be simulated as per IEEE 1800-
 	Generating native compiled code:
 		worklib.tb_top:sv <0x603de0ca>
 			streams:  17, words:  6850
+<<<<<<< HEAD
 		gen_data.adc_6b:sv <0x4f9e3fd5>
 			streams:  69, words: 22265
 		gen_data.prbs_gen_1b:v <0x1235ce6d>
 			streams:  10, words:  3899
 		channel.channel_27dB:sv <0x0a7ba481>
 			streams:  14, words:  7103
+=======
+>>>>>>> shlee95
 	Building instance specific data structures.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
@@ -62,9 +79,18 @@ Loading snapshot worklib.tb_top:sv .................... Done
 xmsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
 xcelium> source /cad/package/cadence/XCELIUM1903/tools/xcelium/files/xmsimrc
 xcelium> run
+<<<<<<< HEAD
 Memory Usage - Current physical: 52.6M, Current virtual: 277.4M
 CPU Usage - 8.2s system + 196.5s user = 204.8s total (59.1% cpu)
 Simulation complete via $finish(2) at time 80 US + 0
 ./tb_top.sv:98 		$finish(2);
 xcelium> exit
 TOOL:	xmverilog	19.03-s009: Exiting on Nov 21, 2019 at 06:53:34 EST  (total: 00:05:47)
+=======
+Memory Usage - Current physical: 52.5M, Current virtual: 277.4M
+CPU Usage - 9.5s system + 199.1s user = 208.6s total (60.1% cpu)
+Simulation complete via $finish(2) at time 80 US + 0
+./tb_top.sv:98 		$finish(2);
+xcelium> exit
+TOOL:	xmverilog	19.03-s009: Exiting on Nov 21, 2019 at 07:23:18 EST  (total: 00:05:48)
+>>>>>>> shlee95

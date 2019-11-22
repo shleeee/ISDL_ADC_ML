@@ -12,7 +12,11 @@
 +EMGRLOG
 xmverilog.log
 -XLSTIME
+<<<<<<< HEAD
 1574336867
+=======
+1574338650
+>>>>>>> shlee95
 -XLKEEP
 -XLMODE
 ./xcelium.d/run.lnx8664.19.03.d
@@ -26,4 +30,8 @@ xmverilog
 -XLVERSION
 "TOOL:	xmverilog	19.03-s009"
 -XLNAME
+<<<<<<< HEAD
 ./xcelium.d/run.lnx8664.19.03.d/santa0_119639
+=======
+./xcelium.d/run.lnx8664.19.03.d/santa0_64704
+>>>>>>> shlee95

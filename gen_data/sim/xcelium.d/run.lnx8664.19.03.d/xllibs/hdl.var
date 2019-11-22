@@ -2,3 +2,10 @@ define LIB_MAP ( $LIB_MAP \
 , ../../../../code => gen_data \
 , ../../../../channel => channel \
 )
+<<<<<<< HEAD
+=======
+define LIB_MAP ( $LIB_MAP \
+, ../../../../code => gen_data \
+, ../../../../channel => channel \
+)
+>>>>>>> shlee95

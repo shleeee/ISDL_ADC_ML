@@ -2,6 +2,7 @@
 1573976058 /proj/titanic/r1/user/shroh/adc_nn/modeling/channel/channel_17dB.sv
 1573714991 /proj/bacardi/r6_28n/user/yhhwang/modeling/channel/channel_23dB.sv
 1573649696 /proj/bacardi/r6_28n/user/yhhwang/modeling/channel/channel_10dB.sv
+<<<<<<< HEAD
 1574333415 /proj/titanic/r1/user/shlee/code/adc_nn/code/gen_data/code/adc_6b.sv
 1573976058 /proj/titanic/r1/user/shroh/adc_nn/modeling/channel/channel_27dB.sv
 1573649831 /proj/bacardi/r6_28n/user/yhhwang/modeling/code/prbs_gen_1b.v
@@ -19,5 +20,24 @@
 1574334702 /proj/titanic/r1/user/shlee/code/adc_nn/code/gen_data/sim/tb_top.sv
 1573800941 /proj/bacardi/r6_28n/user/yhhwang/modeling/sim/tb_top.sv
 1574335992 /proj/titanic/r1/user/shlee/code/ISDL_ADC_ML/gen_data/channel/channel_27dB.sv
+=======
+1573976058 /proj/titanic/r1/user/shroh/adc_nn/modeling/channel/channel_27dB.sv
+1574333415 /proj/titanic/r1/user/shlee/code/adc_nn/code/gen_data/code/adc_6b.sv
+1573649831 /proj/bacardi/r6_28n/user/yhhwang/modeling/code/prbs_gen_1b.v
+1574309249 /proj/titanic/r1/user/shroh/adc_nn/modeling/sim/tb_top.sv
+1573976058 /proj/titanic/r1/user/shroh/adc_nn/modeling/channel/channel_23dB.sv
+1574338155 /proj/titanic/r1/user/shlee/code/ISDL_ADC_ML/gen_data/code/adc_6b.sv
+1574064051 /proj/titanic/r1/user/shroh/adc_nn/modeling/code/adc_6b.sv
+1573976058 /proj/titanic/r1/user/shroh/adc_nn/modeling/channel/channel_10dB.sv
+1574338155 /proj/titanic/r1/user/shlee/code/ISDL_ADC_ML/gen_data/code/prbs_gen_1b.v
+1573976057 /proj/titanic/r1/user/shroh/adc_nn/modeling/code/prbs_gen_2b.v
+1573648680 /proj/bacardi/r6_28n/user/yhhwang/modeling/code/adc_6b.sv
+1574333420 /proj/titanic/r1/user/shlee/code/adc_nn/code/gen_data/channel/channel_27dB.sv
+1574338645 /proj/titanic/r1/user/shlee/code/ISDL_ADC_ML/gen_data/sim/tb_top.sv
+1574334702 /proj/titanic/r1/user/shlee/code/adc_nn/code/gen_data/sim/tb_top.sv
+1574333415 /proj/titanic/r1/user/shlee/code/adc_nn/code/gen_data/code/prbs_gen_1b.v
+1573800941 /proj/bacardi/r6_28n/user/yhhwang/modeling/sim/tb_top.sv
+1574338159 /proj/titanic/r1/user/shlee/code/ISDL_ADC_ML/gen_data/channel/channel_27dB.sv
+>>>>>>> shlee95
 1573776773 /proj/bacardi/r6_28n/user/yhhwang/modeling/code/prbs_gen_2b.v
 1573976057 /proj/titanic/r1/user/shroh/adc_nn/modeling/code/prbs_gen_1b.v
