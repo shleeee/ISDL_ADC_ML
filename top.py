@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import time
 import torch
 import data_io as io
+import data_io_symbol as ios
 import util
 import model
 from torch.autograd import Variable
@@ -21,8 +22,8 @@ lr = 0.5
 lr_q = 0.1
 
 
-X_train=io.load_input("./data/channel_data",6,3) # 30x819126
-Y_train, y_train = io.load_output("./data/channel_data_out",1) # 2x819124
+X_train=ios.load_input("./data/PAM4/data_out.txt",1,5) # 5x800000
+Y_train, y_train = ios.load_output("./data/PAM4/data_in.txt",2) # 2x800000
 
 tic = time.time()
 
@@ -30,8 +31,9 @@ dtype = torch.cuda.FloatTensor
 
 X_train = torch.from_numpy(X_train).type(dtype)
 Y_train = torch.from_numpy(Y_train).type(dtype)
+print(X_train)
 
-ML_EQ = model.network(18, 6, 2)
+ML_EQ = model.network(5, 6, 4)
 
 #ML_EQ.load_state_dict(torch.load(Load_PATH)) # Loading Model
 #ML_EQ.eval()
