@@ -14,13 +14,20 @@ def load_input(input_file, bit, num_cursor):
 	for i_line in input_lines:
 		input_1D.append(i_line.rstrip()[-1*bit:])  #rstrip : delete spaces on the right side of text
 					      #[-1*bit:] : read from position end-6 to end
-
+	zeros = "0"
+	for i in range(bit-1) :
+		zeros = zeros + "0"
+		
+	for num in range(num_cursor-1) :
+		input_1D=np.insert(input_1D,0,zeros)
+	
 	input_2D = np.zeros((num_cursor*len(input_1D[0]),len(input_1D)-(num_cursor-1)))
 
 	for input_len in range(len(input_1D)-(num_cursor-1)) :
-		for num in range(num_cursor-1) :
+		for num in range(num_cursor) :
 			input_2D[num*bit:(num+1)*bit,input_len]=list(map(int,input_1D[input_len+num])) #list(text) : split text letter by letter
 	input_2D=np.transpose(input_2D)
+
 	return input_2D
 
 
