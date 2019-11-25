@@ -1,1 +1,1 @@
-parameter DELAY = 10;
+parameter DELAY = 2;

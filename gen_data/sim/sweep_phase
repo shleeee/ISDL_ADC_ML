@@ -8,8 +8,8 @@
 #set dlf_init_code_g = '59' 
 #set ctle_ac_gain='0'
 #set ctle_dc_gain_g = (0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15)
-#set DELAY = (0 1 2 3 4 5 6 7 8 9 10)
-set DELAY = (4)
+set DELAY = (0 1 2 3 4 5 6 7 8 9 10)
+#set DELAY = (4)
 #set ctle_weight_g = '0001_0001_1000_1000_0000_0000_1000_0100_0001_0100_0000_0000_1000_0010_0001_0010'
 
 
@@ -25,7 +25,7 @@ set DELAY = (4)
 #				foreach pm_jtt_db ($pm_jtt_db_g)
 					set i = 1 
 #					echo ctle_dc_gain hist 18dB_ch >! ./00_result/190814_BB_DC_18dB/5s_bb_pm_ctle_DC_ch_18dB_sweep\_$tstop\_phase_pm\_$pm_jtt_db\_result.csv
-						while($i <2) 
+						while($i < 12) 
 #							set ctle_dc_gain_value = $ctle_dc_gain_g[$i]	
 #							set DELAY = $DELAY[$i]
 							echo "initial begin" >! ./reg.v

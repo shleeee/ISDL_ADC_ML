@@ -23,7 +23,6 @@ module tb_top();
 	//prbs_gen_1b i_prbs_gen_msb(rstb, rstb, clk, 1'b1, 1'b0, 2'b10, prbs_out[1]);
 	//prbs_gen_1b i_prbs_gen_lsb(rstb, rstb, clk, 1'b1, 1'b0, 2'b11, prbs_out[0]);
 	prbs_gen_1b i_prbs_gen(rstb, rstb, clk, 1'b1, 1'b0, 2'b10, prbs_out);
-	
 
 	real ch_in, ch_out;
 	//assign ch_in = (prbs_out==2'b00) ? -3 :
@@ -37,7 +36,7 @@ module tb_top();
 	wire [5:0] adc_out;
 	reg adc_clk;
 	//reg dac_clk;
-adc_6b i_adc(1'b0, adc_clk, ch_out, adc_out);
+	adc_6b i_adc(1'b0, adc_clk, ch_out, adc_out);
 
 //dac_6b i_dac(1'b0, dac_clk, adc_out, dac_out);
 
