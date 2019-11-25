@@ -30,7 +30,7 @@ dtype = torch.cuda.FloatTensor
 #X_train = torch.from_numpy(X_train).type(dtype)
 #Y_train = torch.from_numpy(Y_train).type(dtype)
 
-ML_EQ = model.network(18, 10, 2)
+ML_EQ = model.network(18, 5, 2)
 
 ML_EQ.load_state_dict(torch.load(Load_PATH)) # Loading Model
 ML_EQ.eval()

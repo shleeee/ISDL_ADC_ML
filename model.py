@@ -44,8 +44,8 @@ def train(x_train, y_train, network, learning_rate, epochs):
 		for param in network.parameters():	#Update weights
 			param.data = param.data - learning_rate * param.grad.data
 
-#		if ix % 1000 == 0 :
-#			print('Current epochs : ' + str(ix) + ' th epochs' )
+		if ix % 1000 == 0 :
+			print('Current epochs : ' + str(ix) + ' th epochs' )
 #	io.write_output(x_train,"x_train")
 #	io.write_output(torch.max(y_hat, dim=1)[1],"y_hat")
 #	io.write_output(y_train,"y_train")
@@ -64,13 +64,13 @@ def quantization_train(x_train, y_train, network, learning_rate, epochs, bit) :
 
 	loss = np.zeros([epochs,1])
 	loss_fn = torch.nn.MSELoss()
-	
+#	io.write_weight(network, "network_init")
+#	network = util.normalize(network)	
+#	io.write_weight(network, "network_norm")
 	for param in network.parameters():
 		param.data = util.quantize(param.data,bit)
 
-	network = util.normalize(network)	
-	
-	
+#	io.write_weight(network, "network_quant")
 	for ix in range(epochs):
 		y_hat = network(x_train)	#Forward pass
 		loss_var = loss_fn(y_hat, y_train)
@@ -81,12 +81,13 @@ def quantization_train(x_train, y_train, network, learning_rate, epochs, bit) :
 		for param in network.parameters():
 			param.data = param.data - util.quantize(learning_rate * param.grad.data,bit)
 
-		network = util.normalize(network)
+#		network = util.normalize(network)
 		
-		for param in network.parameters():
-			param.data = util.quantize(param.data,bit)
+#		for param in network.parameters():
+#			param.data = util.quantize(param.data,bit)
 	
 		if ix % 1000 == 0 :
 			print('Current epochs : ' + str(ix) + ' th epochs' )
 
+	io.write_weight(network, "network_end")
 	return network, loss

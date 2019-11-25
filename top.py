@@ -13,8 +13,8 @@ from torch.autograd import Variable
 Load_PATH = "./model/network.pt"
 Save_PATH = "./model/network.pt"
 
-epochs = 8000
-epochs_q = 10000
+epochs = 2000
+epochs_q = 2000
 bit = 3
 lr = 0.5
 lr_q = 0.1
@@ -30,7 +30,7 @@ dtype = torch.cuda.FloatTensor
 X_train = torch.from_numpy(X_train).type(dtype)
 Y_train = torch.from_numpy(Y_train).type(dtype)
 
-ML_EQ = model.network(18, 10, 2)
+ML_EQ = model.network(18, 5, 2)
 
 #ML_EQ.load_state_dict(torch.load(Load_PATH)) # Loading Model
 #ML_EQ.eval()
@@ -42,9 +42,9 @@ ML_EQ, loss = model.train(X_train, Y_train, ML_EQ, lr, epochs)
 
 print('Training Accuracy: ' + str(model.test(X_train, y_train, ML_EQ)*100))
 
-#ML_EQ, loss_q = model.quantization_train(X_train, Y_train, ML_EQ, lr_q, epochs_q, bit ) 
+ML_EQ, loss_q = model.quantization_train(X_train, Y_train, ML_EQ, lr_q, epochs_q, bit ) 
 
-#print('Quantization Accuracy: ' + str(model.test(X_train, y_train, ML_EQ)*100))
+print('Quantization Accuracy: ' + str(model.test(X_train, y_train, ML_EQ)*100))
 
 '''
 plt.subplot(1,2,1)
@@ -63,8 +63,8 @@ Y_test = Variable(torch.from_numpy(Y_test).type(dtype), requires_grad = False)
 
 print('Test Accuracy: ' + str(model.test(X_test, y_test, ML_EQ)*100))
 
-#torch.save(ML_EQ.module.state_dict(), Save_PATH) # Saving Model
-#io.write_weight(ML_EQ, "./result/ML_EQ_weight")
+torch.save(ML_EQ.module.state_dict(), Save_PATH) # Saving Model
+io.write_weight(ML_EQ, "./result/ML_EQ_weight")
 #io.write_output(ML_EQ, "./result/ML_EQ_output")
 
 #plt.show()

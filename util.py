@@ -7,6 +7,7 @@ def quantize(value,bit):
 
 def normalize(network):
 	init=0
+	max_value = 0
 	for param in network.parameters():
 		if(init ==0 ):
 			max_value = torch.max(abs(param.data)).item()
