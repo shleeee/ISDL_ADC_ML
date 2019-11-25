@@ -44,8 +44,8 @@ def train(x_train, y_train, network, learning_rate, epochs):
 		for param in network.parameters():	#Update weights
 			param.data = param.data - learning_rate * param.grad.data
 
-		if ix % 1000 == 0 :
-			print('Current epochs : ' + str(ix) + ' th epochs' )
+#		if ix % 1000 == 0 :
+#			print('Current epochs : ' + str(ix) + ' th epochs' )
 #	io.write_output(x_train,"x_train")
 #	io.write_output(torch.max(y_hat, dim=1)[1],"y_hat")
 #	io.write_output(y_train,"y_train")
@@ -86,8 +86,7 @@ def quantization_train(x_train, y_train, network, learning_rate, epochs, bit) :
 #		for param in network.parameters():
 #			param.data = util.quantize(param.data,bit)
 	
-		if ix % 1000 == 0 :
-			print('Current epochs : ' + str(ix) + ' th epochs' )
+#		if ix % 1000 == 0 :
+#			print('Current epochs : ' + str(ix) + ' th epochs' )
 
-	io.write_weight(network, "network_end")
 	return network, loss
