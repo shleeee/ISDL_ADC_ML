@@ -10,11 +10,12 @@ import data_io_symbol as ios
 import util
 import model
 from torch.autograd import Variable
+import param
 
 Load_PATH = "./model/network.pt"
 Save_PATH = "./model/network.pt"
 
-epochs = 2000
+epochs = 5000
 epochs_q = 8000
 bit = 3
 k = 0
@@ -22,8 +23,8 @@ lr = 0.5
 lr_q = 0.1
 
 
-X_train=ios.load_input("./data/PAM4/data_out.txt",1,5) # 5x800000
-Y_train, y_train = ios.load_output("./data/PAM4/data_in.txt",2) # 2x800000
+X_train=ios.load_input(param.data_out,1,8) # 5x800000
+Y_train, y_train = ios.load_output(param.data_in,2) # 2x800000
 
 tic = time.time()
 
@@ -33,8 +34,9 @@ X_train = torch.from_numpy(X_train).type(dtype)
 Y_train = torch.from_numpy(Y_train).type(dtype)
 finish = 0
 iteration = 0
-while(finish == 0 & iteration < 10):
-	ML_EQ = model.network(5, 6, 4)
+max_value = 0
+while(finish == 0 and iteration < 21):
+	ML_EQ = model.network(8, 10, 4)
 
 #ML_EQ.load_state_dict(torch.load(Load_PATH)) # Loading Model
 #ML_EQ.eval()
@@ -43,14 +45,17 @@ while(finish == 0 & iteration < 10):
 	ML_EQ.cuda()
 
 	ML_EQ, loss = model.train(X_train, Y_train, ML_EQ, lr, epochs)
+	model.test(X_train, y_train, ML_EQ)
 
-	if(model.test(X_train, y_train, ML_EQ)*100 > 95):
+	if(model.test(X_train, y_train, ML_EQ) > max_value):
+		max_value = model.test(X_train, y_train, ML_EQ)
+	if(model.test(X_train, y_train, ML_EQ)*100 > 99.999):
 		finish = 1
 	iteration = iteration + 1
 
-print('Training Accuracy: ' + str(model.test(X_train, y_train, ML_EQ)*100))
-io.write_weight(ML_EQ, "./result/ML_EQ_weight")
+print('Training Accuracy: ' + str(100*max_value))
 print('iteration : '+str(iteration))
+io.write_weight(ML_EQ, "./result/ML_EQ_weight")
 
 #ML_EQ, loss_q = model.quantization_train(X_train, Y_train, ML_EQ, lr_q, epochs_q, bit ) 
 
