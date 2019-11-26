@@ -1,0 +1,42 @@
+xmverilog(64): 19.03-s009: (c) Copyright 1995-2019 Cadence Design Systems, Inc.
+TOOL:	xmverilog	19.03-s009: Started on Nov 25, 2019 at 00:53:59 EST
+xmverilog
+	+xm64bit
+	+access+r
+	./tb_top.sv
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/code/adc_6b.sv
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/code/prbs_gen_1b.v
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/code/prbs_gen_2b.v
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/channel/channel_10dB.sv
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/channel/channel_17dB.sv
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/channel/channel_23dB.sv
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/channel/channel_27dB.sv
+Recompiling... reason: unable to stat '/.//proj/titanic/r1/user/shroh/adc_nn/modeling/channel/channel_10dB.sv'.
+file: ./tb_top.sv
+	module worklib.tb_top:sv
+		errors: 0, warnings: 0
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+xmelab: *W,DSEMEL: This SystemVerilog design will be simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.tb_top:sv <0x39e151af>
+			streams:  17, words:  7576
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                 Instances  Unique
+		Modules:                 8       8
+		Registers:             134     134
+		Scalar wires:           79       -
+		Vectored wires:          4       -
+		Always blocks:          11      11
+		Initial blocks:         56      56
+		Cont. assignments:      67      67
+		Pseudo assignments:      5       5
+		Simulation timescale:  1fs
+	Writing initial simulation snapshot: worklib.tb_top:sv
+Loading snapshot worklib.tb_top:sv .................... Done
+xmsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+xcelium> source /cad/package/cadence/XCELIUM1903/tools/xcelium/files/xmsimrc
+xcelium> run

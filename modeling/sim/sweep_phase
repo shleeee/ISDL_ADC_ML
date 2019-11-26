@@ -1,0 +1,57 @@
+#!/bin/tcsh
+
+#set p_clk = '100'
+#set fm_jtt_db_g = '-80'
+#set pm_jtt_db_g = '-125'
+
+#set ptrn_sel_g = '0'
+#set dlf_init_code_g = '59' 
+#set ctle_ac_gain='0'
+#set ctle_dc_gain_g = (0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15)
+set DELAY = (4 5 6 7 8 9 10)
+#set ctle_weight_g = '0001_0001_1000_1000_0000_0000_1000_0100_0001_0100_0000_0000_1000_0010_0001_0010'
+
+
+#set tstop_g = '6000'
+#set tstart_g = '4000'
+
+#\rm -f ./00_result/*.vec
+#\rm -f ./00_result/*.csv
+
+#	foreach tstop ($tstop_g)
+#		foreach tstart ($tstart_g)
+#			foreach fm_jtt_db ($fm_jtt_db_g)
+#				foreach pm_jtt_db ($pm_jtt_db_g)
+					set i = 1 
+#					echo ctle_dc_gain hist 18dB_ch >! ./00_result/190814_BB_DC_18dB/5s_bb_pm_ctle_DC_ch_18dB_sweep\_$tstop\_phase_pm\_$pm_jtt_db\_result.csv
+						while($i <8) 
+#							set ctle_dc_gain_value = $ctle_dc_gain_g[$i]	
+#							set DELAY = $DELAY[$i]
+							echo "initial begin" >! ./reg.v
+#							echo "ctle_code <= 4'd"$ctle_dc_gain_value";" >> ./reg.v
+#							echo "ac_gain_code <= 4'd"$ctle_ac_gain";" >> ./reg.v
+#							echo "ptrn_sel <= 2'b0"$ptrn_sel_g";" >> ./reg.v
+#							echo "dlf_init_code <= 10'd"$dlf_init_code_g";" >> ./reg.v
+							echo "end" >> ./reg.v
+					
+
+#							echo parameter real p_clk = $p_clk";" >! ./param.v
+							echo parameter DELAY = $DELAY[$i]";" >! ./param.v
+#							echo parameter real fm_jtt_db = $fm_jtt_db";" >> ./param.v
+#							echo parameter real pm_jtt_db = $pm_jtt_db";" >> ./param.v
+#							echo parameter real tstop = $tstop";" >> ./param.v
+#							echo parameter real tstart = $tstop";" >> ./param.v
+							./nvrun
+#							./hist_de.py
+#							set hist = `cat ./00_result/hist.vec`
+							mv ./data_in.txt ./data_in_$DELAY[$i].txt
+							mv ./data_out.txt ./data_out_$DELAY[$i].txt
+#							echo $ctle_dc_gain_value, $hist >> ./00_result/190814_BB_DC_18dB/5s_bb_pm_ctle_DC_ch_18dB_sweep\_$tstop\_phase_pm\_$pm_jtt_db\_result.csv
+							@ i++
+						end
+					end		
+#				end
+#			end
+#		end
+#	end
+

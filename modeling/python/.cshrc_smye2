@@ -1,0 +1,55 @@
+# ISDL default cshrc
+
+setenv OS_ARCH `uname`
+
+set filec
+set noclobber
+set hostname = "`hostname`"
+set correct off
+set prompt="%{\33[1;31m%}%m%{\33[1;33m%}:%~>%{\33[0m%} "
+alias	cd	'cd \!*; set prompt = "%{\33[1;31m%}%m%{\33[1;33m%}:%~>%{\33[0m%} "'
+
+set autologout=0
+source ~/.alias
+
+# OS-specific setup
+
+if ( $OS_ARCH == Linux ) then
+
+set path = ($path . /bin /usr/bin /usr/local/bin /usr/X11R6/bin /usr/lib/firefox ~/bin /cad/bin)
+setenv MANPATH /usr/share/man:/usr/local/share/man:/usr/share/binutils-data/i686-pc-linux-gnu/2.15.92.0.2/man:/usr/share/gcc-data/i686-pc-linux-gnu/3.3.6/man:/usr/qt/3/doc/man
+
+setenv LD_LIBRARY_PATH /usr/lib:/lib:/usr/share/lib:/cad/package/hsim/2007.03_sp2/hsimplus/platform/amd64/bin:/usr/local/balsa/lib
+
+endif
+
+if ( $OS_ARCH == SunOS) then
+
+set path = (. /usr/local/bin /bin /usr/bin /usr/openwin/bin)
+set path = ($path /usr/dt/bin /usr/ccs/bin)
+set path = ($path /opt/sfw/bin /opt/sfw/kde/bin)
+setenv OPENWINHOME /usr/openwin
+setenv MANPATH /usr/man:/usr/openwin/man:/usr/dt/man
+setenv MANPATH ${MANPATH}:/opt/sfw/man
+setenv LD_LIBRARY_PATH /usr/lib:/usr/openwin/lib:/usr/dt/lib
+set history=40
+stty erase ^H
+endif
+
+### User Defined ####################################################################################
+
+# load CAD environments
+source /cad/etc/.cshrc.matlab_r2015b
+#source /cad/etc/.cshrc.cds_ic615
+
+setenv META_QUEUE 1
+setenv META_QUEUE_TIME 3600
+
+setenv PYTHONPATH		/home/smye/share/python/
+setenv SIMBA_CONFIG		/home/smye/share/python/simba_config/default.py
+setenv SIMBA_CONFIGPATH		/home/smye/share/python/simba_config/
+
+#setenv PYTHONPATH		/home/smye/lib/python/
+#setenv SIMBA_CONFIG		/home/smye/lib/python/simba_config/default.py
+#setenv SIMBA_CONFIGPATH	/home/smye/lib/python/simba_config/
+#setenv	PYTHONPATH		/usr/lib/portage/pym
