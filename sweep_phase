@@ -36,8 +36,8 @@ set DELAY = (0 1 2 3 4 5 6 7 8 9 10)
 					
 
 #							echo parameter real p_clk = $p_clk";" >! ./param.v
-							set data_in_k = './data/PAM4/17dB/data_in_'$DELAY[$i]'.txt'
-							set data_out_k = './data/PAM4/17dB/data_out_'$DELAY[$i]'.txt'
+							set data_in_k = './data/PAM4/27dB_0p5ui/data_in_'$DELAY[$i]'.txt'
+							set data_out_k = './data/PAM4/27dB_0p5ui/data_out_'$DELAY[$i]'.txt'
 							echo data_in = "'"$data_in_k"'" >! ./param.py
 							echo data_out = "'"$data_out_k"'" >> ./param.py
 #							echo parameter real fm_jtt_db = $fm_jtt_db";" >> ./param.py
