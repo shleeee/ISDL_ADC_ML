@@ -8,7 +8,7 @@
 #set dlf_init_code_g = '59' 
 #set ctle_ac_gain='0'
 #set ctle_dc_gain_g = (0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15)
-set DELAY = (0 1 2 3 4 5 6 7 8 9 10)
+set DELAY = (0 1 2 3 4 5 6 7 8 9)
 #set ctle_weight_g = '0001_0001_1000_1000_0000_0000_1000_0100_0001_0100_0000_0000_1000_0010_0001_0010'
 
 
@@ -24,7 +24,7 @@ set DELAY = (0 1 2 3 4 5 6 7 8 9 10)
 #				foreach pm_jtt_db ($pm_jtt_db_g)
 					set i = 1 
 #					echo ctle_dc_gain hist 18dB_ch >! ./00_result/190814_BB_DC_18dB/5s_bb_pm_ctle_DC_ch_18dB_sweep\_$tstop\_phase_pm\_$pm_jtt_db\_result.csv
-						while($i <12) 
+						while($i <11) 
 #							set ctle_dc_gain_value = $ctle_dc_gain_g[$i]	
 #							set DELAY = $DELAY[$i]
 							echo "initial begin" >! ./reg.py
@@ -36,10 +36,14 @@ set DELAY = (0 1 2 3 4 5 6 7 8 9 10)
 					
 
 #							echo parameter real p_clk = $p_clk";" >! ./param.v
-							set data_in_k = './data/PAM4/27dB_0p5ui/data_in_'$DELAY[$i]'.txt'
-							set data_out_k = './data/PAM4/27dB_0p5ui/data_out_'$DELAY[$i]'.txt'
+							set data_in_k = './data/PAM4/27dB_test/data_in_'$DELAY[$i]'.txt'
+							set data_out_k = './data/PAM4/27dB_test/data_out_'$DELAY[$i]'.txt'
+							set data_in_k_test = './data/PAM4/27dB_test/test_data/data_in_'$DELAY[$i]'.txt'
+							set data_out_k_test = './data/PAM4/27dB_test/test_data/data_out_'$DELAY[$i]'.txt'
 							echo data_in = "'"$data_in_k"'" >! ./param.py
 							echo data_out = "'"$data_out_k"'" >> ./param.py
+							echo data_in_test = "'"$data_in_k_test"'" >> ./param.py
+							echo data_out_test = "'"$data_out_k_test"'" >> ./param.py
 #							echo parameter real fm_jtt_db = $fm_jtt_db";" >> ./param.py
 #							echo parameter real pm_jtt_db = $pm_jtt_db";" >> ./param.py
 #							echo parameter real tstop = $tstop";" >> ./param.py
