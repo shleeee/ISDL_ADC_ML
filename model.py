@@ -44,8 +44,8 @@ def train(x_train, y_train, network, learning_rate, epochs):
 		for param in network.parameters():
 			param.data = param.data - learning_rate * param.grad.data
 
-		if ix % 1000 == 0 :
-			print('Current epochs : ' + str(ix) + ' th epochs' )
+#		if ix % 1000 == 0 :
+#			print('Current epochs : ' + str(ix) + ' th epochs' )
 
 	return network, loss
 
@@ -58,15 +58,15 @@ def test(x_test, y_test, network):
 
 	return acc
 
-def quantization_train(x_train, y_train, network, learning_rate, epochs, bit) :
+def quantization_train(x_train, y_train, network, learning_rate, epochs, int_bit, float_bit) :
 
 	loss = np.zeros([epochs,1])
 	loss_fn = torch.nn.MSELoss()
 	
 	for param in network.parameters():
-		param.data = util.quantize(param.data,bit)
+		param.data = util.quantize(param.data,int_bit,float_bit)
 
-	network = util.normalize(network)	
+#	network = util.normalize(network)	
 	
 	
 	for ix in range(epochs):
@@ -77,14 +77,14 @@ def quantization_train(x_train, y_train, network, learning_rate, epochs, bit) :
 		loss_var.backward()
 		
 		for param in network.parameters():
-			param.data = param.data - util.quantize(learning_rate * param.grad.data,bit)
+			param.data = param.data - util.quantize(learning_rate * param.grad.data,int_bit,float_bit)
 
-		network = util.normalize(network)
+#		network = util.normalize(network)
 		
 		for param in network.parameters():
-			param.data = util.quantize(param.data,bit)
+			param.data = util.quantize(param.data,int_bit,float_bit)
 	
-		if ix % 1000 == 0 :
-			print('Current epochs : ' + str(ix) + ' th epochs' )
+#		if ix % 1000 == 0 :
+#			print('Current epochs : ' + str(ix) + ' th epochs' )
 
 	return network, loss
