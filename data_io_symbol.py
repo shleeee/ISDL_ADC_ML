@@ -1,4 +1,5 @@
 import numpy as np
+import torch
 
 
 
@@ -10,17 +11,34 @@ def load_input(input_file, bit, num_cursor):
 	input_1D = []
 
 	in_data.close()
-
+#	max_value = 0
+#	min_value = 64
 	for i_line in input_lines:
+#		if(int(i_line,2) > max_value):
+#			max_value = int(i_line,2)
+#		if(int(i_line,2) < min_value):
+#			min_value = int(i_line,2)
 		input_1D.append(int(i_line,2))  #rstrip : delete spaces on the right side of text
 					      #[-1*bit:] : read from position end-6 to end
-
 	input_2D = np.zeros((num_cursor,len(input_1D)-(num_cursor-1)))
 	for input_len in range(len(input_1D)-(num_cursor-1)) :
 		for num in range(num_cursor) :
 			input_2D[num,input_len]=input_1D[input_len+num] #list(text) : split text letter by letter
 	input_2D=np.transpose(input_2D)
-	input_2D=input_2D/64
+#	l = input_2D.copy()
+#	l[:][:] = min_value
+#	input_2D=input_2D-min_value
+#	max_value = max_value-min_value
+#	print(input_2D)
+#	print(max_value)
+#	print(min_value)
+	input_2D=input_2D/63.0
+#	print(input_2D)
+	k = input_2D.copy()
+	k[:][:] = -32.0/63.0
+	input_2D=input_2D+k
+#	print(input_2D)
+#	print(max_value)
 	return input_2D
 
 
