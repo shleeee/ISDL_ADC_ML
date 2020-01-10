@@ -20,8 +20,8 @@ lr = 0.5
 lr_q = 0.1
 
 
-X_train=io.load_input("./data/NRZ/27dB/PRBS31/data_out.txt",6,3) # 30x819126
-Y_train, y_train = io.load_output("./data/NRZ/27dB/PRBS31/data_in.txt",1) # 2x819124
+X_train=io.load_input("./data/NRZ/27dB/PRBS31/data_out_5.txt",6,3) # 30x819126
+Y_train, y_train = io.load_output("./data/NRZ/27dB/PRBS31/data_in_5.txt",1) # 2x819124
 
 tic = time.time()
 
@@ -30,7 +30,7 @@ dtype = torch.cuda.FloatTensor
 X_train = torch.from_numpy(X_train).type(dtype)
 Y_train = torch.from_numpy(Y_train).type(dtype)
 
-ML_EQ = model.network(18, 5, 2)
+ML_EQ = model.network(18, 3, 2)
 
 #ML_EQ.load_state_dict(torch.load(Load_PATH)) # Loading Model
 #ML_EQ.eval()
@@ -42,9 +42,9 @@ ML_EQ, loss = model.train(X_train, Y_train, ML_EQ, lr, epochs)
 
 print('Training Accuracy: ' + str(model.test(X_train, y_train, ML_EQ)*100))
 
-ML_EQ, loss_q = model.quantization_train(X_train, Y_train, ML_EQ, lr_q, epochs_q, bit ) 
+#ML_EQ, loss_q = model.quantization_train(X_train, Y_train, ML_EQ, lr_q, epochs_q, bit ) 
 
-print('Quantization Accuracy: ' + str(model.test(X_train, y_train, ML_EQ)*100))
+#print('Quantization Accuracy: ' + str(model.test(X_train, y_train, ML_EQ)*100))
 
 '''
 plt.subplot(1,2,1)
@@ -55,8 +55,8 @@ plt.ylabel('loss')
 '''
 print(str(time.time() - tic) + ' s')
 
-X_test=io.load_input("./data/NRZ/23dB/data_out_4.txt",6,3) # 30x819126
-Y_test, y_test = io.load_output("./data/NRZ/23dB/data_in_4.txt",1) # 2x819124
+X_test=io.load_input("./data/NRZ/27dB/PRBS15_jitter/data_out_5.txt",6,3) # 30x819126
+Y_test, y_test = io.load_output("./data/NRZ/27dB/PRBS15_jitter/data_in_5.txt",1) # 2x819124
 
 X_test = Variable(torch.from_numpy(X_test).type(dtype), requires_grad = False)
 Y_test = Variable(torch.from_numpy(Y_test).type(dtype), requires_grad = False)
