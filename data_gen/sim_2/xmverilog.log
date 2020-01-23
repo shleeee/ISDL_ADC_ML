@@ -1,0 +1,53 @@
+xmverilog(64): 19.03-s009: (c) Copyright 1995-2019 Cadence Design Systems, Inc.
+TOOL:	xmverilog	19.03-s009: Started on Jan 21, 2020 at 03:41:48 EST
+xmverilog
+	+xm64bit
+	+access+r
+	./tb_top.sv
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/code/adc_6b.sv
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/code/prbs_gen_1b.v
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/code/prbs_gen_2b.v
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/channel/channel_6dB.sv
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/channel/channel_10dB.sv
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/channel/channel_17dB.sv
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/channel/channel_23dB.sv
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/channel/channel_27dB.sv
+Recompiling... reason: unable to stat '/.//proj/titanic/r1/user/shroh/adc_nn/modeling/code/adc_6b.sv'.
+file: ./tb_top.sv
+	module worklib.tb_top:sv
+		errors: 0, warnings: 0
+file: /proj/titanic/r1/user/shroh/old/adc_nn/modeling/channel/channel_6dB.sv
+`timescale 1ns/1fs
+                 |
+xmvlog: *W,TMSERX (/proj/titanic/r1/user/shroh/old/adc_nn/modeling/channel/channel_6dB.sv,4|17): `timescale must be used outside of design units; directive ignored [19.8(IEEE Std 1364-2005)].
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+xmelab: *W,DSEMEL: This SystemVerilog design will be simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.tb_top:sv <0x52d2f9e2>
+			streams:  21, words:  9946
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                 Instances  Unique
+		Modules:                10       9
+		Registers:             156     155
+		Scalar wires:           85       -
+		Vectored wires:          5       -
+		Always blocks:          15      14
+		Initial blocks:         65      65
+		Cont. assignments:      68      67
+		Pseudo assignments:      5       5
+		Simulation timescale:  1fs
+	Writing initial simulation snapshot: worklib.tb_top:sv
+Loading snapshot worklib.tb_top:sv .................... Done
+xmsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+xcelium> source /cad/package/cadence/XCELIUM1903/tools/xcelium/files/xmsimrc
+xcelium> run
+Memory Usage - Current physical: 56.1M, Current virtual: 280.9M
+CPU Usage - 5.4s system + 159.8s user = 165.2s total (56.6% cpu)
+Simulation complete via $finish(2) at time 50000200 PS + 0
+./tb_top.sv:127 		$finish(2);
+xcelium> exit
+TOOL:	xmverilog	19.03-s009: Exiting on Jan 21, 2020 at 03:46:42 EST  (total: 00:04:54)

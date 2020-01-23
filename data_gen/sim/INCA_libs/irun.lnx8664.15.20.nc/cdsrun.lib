@@ -1,0 +1,2 @@
+SOFTINCLUDE /cad/package/ius/15.2/tools/inca/files/cds.lib
+define worklib ../worklib

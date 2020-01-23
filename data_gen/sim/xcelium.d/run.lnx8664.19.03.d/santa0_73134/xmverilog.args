@@ -1,0 +1,14 @@
+//
+// File created by:  xmverilog
+// Do not modify this file
+//
++xm64bit
++access+r
+./tb_top.sv
+/proj/titanic/r1/user/shroh/old/adc_nn/modeling/code/adc_6b.sv
+/proj/titanic/r1/user/shroh/old/adc_nn/modeling/code/prbs_gen_1b.v
+/proj/titanic/r1/user/shroh/old/adc_nn/modeling/code/prbs_gen_2b.v
+/proj/titanic/r1/user/shroh/old/adc_nn/modeling/channel/channel_10dB.sv
+/proj/titanic/r1/user/shroh/old/adc_nn/modeling/channel/channel_17dB.sv
+/proj/titanic/r1/user/shroh/old/adc_nn/modeling/channel/channel_23dB.sv
+/proj/titanic/r1/user/shroh/old/adc_nn/modeling/channel/channel_27dB.sv

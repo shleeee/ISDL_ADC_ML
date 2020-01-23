@@ -1,0 +1,28 @@
+#!/bin/bash
+
+xmverilog +xm64bit +access+r \
+	./tb_top.sv \
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/code/adc_6b.sv \
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/code/prbs_gen_1b.v \
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/code/prbs_gen_2b.v \
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/channel/channel_6dB.sv \
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/channel/channel_10dB.sv \
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/channel/channel_17dB.sv \
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/channel/channel_23dB.sv \
+	/proj/titanic/r1/user/shroh/old/adc_nn/modeling/channel/channel_27dB.sv \
+#	/proj/titanic/r1/user/shroh/adc_nn/modeling/code/dac_6b.sv \
+#	/proj/bacardi/r6_28n/user/mkshim/02_DIG/03_bacardi_r6_mkshim/model/eq/03_channel/sv/ITTC_5G_18dB.sv \
+#	/proj/bacardi/r6_28n/user/mkshim/02_DIG/03_bacardi_r6_mkshim/model/eq/00_ctle/CTLE_190805.sv \
+#	/proj/bacardi/r6_28n/user/mkshim/02_DIG/01_winston_kspark91/cdr_5s.sv \
+#	/proj/bacardi/r6_28n/user/mkshim/02_DIG/01_winston_kspark91/model/cdr_ana_5s.sv \
+#	/proj/bacardi/r6_28n/user/mkshim/02_DIG/01_winston_kspark91/model/dco/dco_pm.v \
+#	/proj/bacardi/r6_28n/user/mkshim/02_DIG/01_winston_kspark91/model/bbpd_des/bbpd_des_5s.sv \
+#	/proj/bacardi/r6_28n/user/mkshim/02_DIG/01_winston_kspark91/model/sampler/sampler.sv \
+#	/proj/bacardi/r6_28n/user/mkshim/02_DIG/01_winston_kspark91/model/dff/dff.sv \
+#	/proj/bacardi/r6_28n/user/mkshim/02_DIG/01_winston_kspark91/code/cdr_dig.v \
+#	/proj/bacardi/r6_28n/user/mkshim/02_DIG/01_winston_kspark91/code/dlf.v \
+#	/proj/bacardi/r6_28n/user/mkshim/02_DIG/01_winston_kspark91/code/dec.v \
+#	/proj/bacardi/r6_28n/user/mkshim/02_DIG/01_winston_kspark91/code/prbs_chk_32b.v \
+#	/proj/bacardi/r6_28n/user/mkshim/02_DIG/02_knight_kspark91_dig_apfd/code/prbs_gen_1b.v \
+#	/proj/bacardi/r6_28n/user/mkshim/02_DIG/00_bacardi_r5_mkshim/01_MODEL/07_DRIVER/driver.sv
+ #	/proj/bacardi/r6_28n/user/mkshim/02_DIG/03_bacardi_r6_mkshim/model/ctle_bbpd_wdco_4s_p/dco_model/dco_pm.v \

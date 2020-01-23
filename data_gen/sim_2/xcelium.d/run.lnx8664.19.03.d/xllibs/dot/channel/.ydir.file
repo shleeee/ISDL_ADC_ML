@@ -1,0 +1,5 @@
+./../channel/prbs_gen_1b.v
+./../channel/prbs_gen_1b.sv
+./../channel/channel_6dB.v
+./../channel/adc_6b.v
+./../channel/adc_6b.sv

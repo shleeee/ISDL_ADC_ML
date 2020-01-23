@@ -1,0 +1,4 @@
+ncvlog: 15.20-s010: (c) Copyright 1995-2016 Cadence Design Systems, Inc.
+	assign ch_in = (prbs_out==2'b00) ? -3 :
+	           |
+ncvlog: *E,RANOTL (tb_top.sv,29|12): A reg is not a legal lvalue in this context [6.1.2(IEEE)].
