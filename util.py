@@ -9,9 +9,9 @@ def quantize(value,int_bit,float_bit):
 #	elif(value < (-2**int_bit+1)):
 #		value = -2**int_bit+1
 	value1 = torch.floor(value)
-	value2 = torch.clamp(value1, -2**int_bit+1, 2**int_bit-1)
+	value2 = torch.clamp(value1, -2**(int_bit-1), 2**(int_bit-1)-1)
 	value3 = value - value1
-	n = 2**float_bit - 1
+	n = 2**float_bit
 	value4 = torch.round(value3*n)/n
 	return (value2 + value4)
 
