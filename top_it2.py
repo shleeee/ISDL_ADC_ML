@@ -26,8 +26,8 @@ lr_q = 0.1
 X_train=ios.load_input(param2.data_out,1,5) # 5x800000
 Y_train, y_train = ios.load_output(param2.data_in,2) # 2x800000
 
-X_test=ios.load_input(param2.data_out_test,1,5)
-Y_test, y_test = ios.load_output(param2.data_in_test,2)
+#X_test=ios.load_input(param2.data_out_test,1,5)
+#Y_test, y_test = ios.load_output(param2.data_in_test,2)
 
 tic = time.time()
 
@@ -39,7 +39,7 @@ finish = 0
 iteration = 0
 max_value = 0
 while(finish == 0 and iteration < 31):
-	ML_EQ = model.network_wo_relu(5, 8, 4)
+	ML_EQ = model.network(5, 3, 4)
 
 #ML_EQ.load_state_dict(torch.load(Load_PATH)) # Loading Model
 #ML_EQ.eval()
@@ -59,7 +59,7 @@ while(finish == 0 and iteration < 31):
 
 print('Training Accuracy: ' + str(100*max_value))
 print('iteration : '+str(iteration))
-io.write_weight(ML_EQ_best, "./result/ML_EQ_weight")
+#io.write_weight(ML_EQ_best, "./result/ML_EQ_weight")
 
 #ML_EQ, loss_q = model.quantization_train(X_train, Y_train, ML_EQ, lr_q, epochs_q, bit ) 
 
@@ -75,10 +75,10 @@ plt.title('Training loss')
 plt.ylabel('loss')
 '''
 
-X_test = Variable(torch.from_numpy(X_test).type(dtype), requires_grad = False)
-Y_test = Variable(torch.from_numpy(Y_test).type(dtype), requires_grad = False)
+#X_test = Variable(torch.from_numpy(X_test).type(dtype), requires_grad = False)
+#Y_test = Variable(torch.from_numpy(Y_test).type(dtype), requires_grad = False)
 
-print('Test Accuracy: ' + str(model.test(X_test, y_test, ML_EQ_best)*100))
+#print('Test Accuracy: ' + str(model.test(X_test, y_test, ML_EQ_best)*100))
 
 print(str(time.time() - tic) + ' s')
 
