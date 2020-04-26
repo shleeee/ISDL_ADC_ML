@@ -6,32 +6,32 @@ import util
 import torch.nn.functional as F
 import torch
 
+k = 0
+
 class cReLU(torch.nn.Module):
 	def __init__(self):
 		super(cReLU,self).__init__()
 
 	def forward(self, input):
-		return torch.clamp(input, min=0, max=8)
-
-class cReLU2(torch.nn.Module):
-	def __init__(self):
-		super(cReLU,self).__init__()
-
-	def forward(self, input):
-		input = torch.round(input * (2**2))/(2**2)
-		return torch.clamp(input, min=0, max=15.75)
+		global k
+		if(k == 1):
+			input = torch.round(input*(2**1))/(2**1)
+			output = torch.clamp(input, min=0, max=15.5)
+		else:
+			output = torch.clamp(input, min=0, max=8)
+		return output
 
 class FFClassifier(torch.nn.Module):
 	def __init__(self, input_cell, hidden_cell, output_cell):
 		super(FFClassifier,self).__init__()
 		self.fc1 = torch.nn.Linear(input_cell, hidden_cell)
 		self.relu = torch.nn.ReLU()
-		self.fc2 = torch.nn.Linear(input_cell+hidden_cell, output_cell)
-	def forward(self, x):
-		k = x.cpu().numpy().copy()
+		self.fc2 = torch.nn.Linear(hidden_cell+4, output_cell)
+	def forward(self, x, y):
+#		k = x.cpu().numpy().copy()
 #		l = torch.FloatTensor(k)
-		dtype = torch.cuda.FloatTensor
-		l = torch.from_numpy(k).type(dtype)
+#		dtype = torch.cuda.FloatTensor
+#		l = torch.from_numpy(k).type(dtype)
 		x = self.fc1(x)
 		x = self.relu(x)
 #		print('x shape : ', x.shape)
@@ -40,7 +40,7 @@ class FFClassifier(torch.nn.Module):
 #		m = np.concatenate((y,k), axis=1)
 #		x = torch.FloatTensor(m)
 #		x = torch.add(x,l)
-		x = torch.cat((x,l), dim=1)
+		x = torch.cat((x,y), dim=1)
 #		print('x shape after : ', x.shape)
 		x = self.fc2(x)
 		x = self.relu(x)
@@ -195,7 +195,34 @@ def train4(x_train, y_train, x_train2, y_train2, x_train3, y_train3, x_train4, y
 		loss_var = (loss_var1+loss_var2+loss_var3+loss_var4)/4.0
 		loss[ix] = loss_var.data.cpu()
 		network.zero_grad()
-		loss_var.backward()
+		loss_var.backward(retain_graph=True)
+		
+		for param in network.parameters():
+			param.data = param.data - learning_rate * param.grad.data
+
+#		if ix % 1000 == 0 :
+#			print('Current epochs : ' + str(ix) + ' th epochs' )
+
+	return network, loss
+
+def train4_up(x_train, x_train_mid, y_train, x_train2, x_train2_mid, y_train2, x_train3, x_train3_mid, y_train3, x_train4, x_train4_mid, y_train4, network, learning_rate, epochs):
+
+	loss = np.zeros([epochs,1])
+	loss_fn = torch.nn.MSELoss()		#Loss function
+
+	for ix in range(epochs):
+		y_hat = network(x_train, x_train_mid)			#Forward pass
+		y_hat2 = network(x_train2, x_train2_mid)		#Forward pass
+		y_hat3 = network(x_train3, x_train3_mid)		#Forward pass
+		y_hat4 = network(x_train4, x_train4_mid)		#Forward pass
+		loss_var1 = loss_fn(y_hat, y_train)
+		loss_var2 = loss_fn(y_hat2, y_train2)
+		loss_var3 = loss_fn(y_hat3, y_train3)
+		loss_var4 = loss_fn(y_hat4, y_train4)
+		loss_var = (loss_var1+loss_var2+loss_var3+loss_var4)/4.0
+		loss[ix] = loss_var.data.cpu()
+		network.zero_grad()
+		loss_var.backward(retain_graph=True)
 		
 		for param in network.parameters():
 			param.data = param.data - learning_rate * param.grad.data
@@ -208,6 +235,15 @@ def train4(x_train, y_train, x_train2, y_train2, x_train3, y_train3, x_train4, y
 def test(x_test, y_test, network):
 
 	Y_hat = network(x_test)
+	y_tmp = torch.max(Y_hat, dim=1)[1] #return max index
+	y_tmp = y_tmp.data.cpu().numpy()
+	acc = np.mean(1 * (y_tmp == y_test))
+
+	return acc
+
+def test_up(x_test, x_test_mid, y_test, network):
+
+	Y_hat = network(x_test, x_test_mid)
 	y_tmp = torch.max(Y_hat, dim=1)[1] #return max index
 	y_tmp = y_tmp.data.cpu().numpy()
 	acc = np.mean(1 * (y_tmp == y_test))
